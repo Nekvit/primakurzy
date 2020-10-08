@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(244, 244, 244);
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    text-transform: uppercase;
+    padding: 60px 0 50px 0;
+    font-size: 50px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 35px;
+    padding: 50px 0 18px;
+    letter-spacing: 2px;
+}
+
+a, form input {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease-out;
+}
+
+.container {
+    width: 75%;
+    margin: auto;
+}
+
+.ikony a i {
+    padding: 0 3px;
+}
+
+/*SECTION*/
+
+.uvod {
+    text-align: center;
+    padding-bottom: 120px;
+}
+
+.uvod h2 {
+    font-style: italic;
+    color: rgba(255, 136, 0, 0.63);
+}
+
+.uvod p {
+    letter-spacing: 1px;
+    line-height: 28px;
+    margin: 30px 0;
+}
+
+/*KONTAKT*/
+
+.kontakt {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.kontaktBox {
+    background-color: rgb(238, 238, 238);
+    padding: 0 70px 50px;
+    border-radius: 10px;
+}
+
+.kontakt p {
+    margin: 10px 0;
+}
+
+.oddeleni {
+    display: flex;
+    justify-content: space-between;
+}
+
+.oddeleni p {
+    text-align: left;
+}
+
+.kontakt p i {
+    width: 40px;
+}
+
+.kontakt span {
+    font-weight: 700;
+    color: red;
+}
+
+.kontakt .ikony {
+    font-size: 40px;
+}
+
+.kontakt .map {
+    margin: 50px 0;
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+}
+
+form input[type="text"], form textarea, form input[type="date"], form select {
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    display: block;
+    padding: 15px 20px;
+    width: 70%;
+    max-width: 70%;
+    min-width: 70%;
+    margin: 15px auto;
+    font-family: 'Montserrat', sans-serif;
+}
+form textarea {
+    min-height: 200px;
+}
+
+form .button {
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    outline: none;
+    padding: 15px 50px;
+    margin-top: 15px;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    background-color: rgba(255, 149, 28, 0.739);
+    border-radius: 20px;
+    
+}
+
+form .button:hover {
+    background-color: rgba(255, 163, 58, 0.685);
+    outline: none;
+    cursor: pointer;
+}
+
+
+/*REZERVACE*/
+
+.rezervace {
+    padding: 100px 0;
+    text-align: center;
+}
+
+
+/*GALERIE*/
+
+.galerie{
+    text-align: center;
+}
+
+.galerieGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 250px;
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.galerieGrid .item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+.galerieGrid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+.item:hover img{
+    transform: scale(1.1);
+}
+
+
+/*404*/
+
+.pagenotfound {
+    text-align: center;
+}
+
+.pagenotfound img {
+    width: 50%;
+    border-radius: 10px;
+}
+
+

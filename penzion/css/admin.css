@@ -1,0 +1,7 @@
+.chyba {
+    color: rgb(243, 59, 59);
+    font-weight: bold;
+    padding: 20px;
+    margin: 40px;
+    border: 2px solid rgb(243, 59, 59);
+}

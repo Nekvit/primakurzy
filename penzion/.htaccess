@@ -1,0 +1,9 @@
+# nejaky komentar
+
+# zapneme modul pro "prepisovani" url
+RewriteEngine On
+
+#Pokud prijde pozadavek na jakekoliv url co neexistuje napr /kontakt tak misto
+#toho zobrazit index.php?stranka=kontakt
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.+) index.php?stranka=$1 [L,QSA]
