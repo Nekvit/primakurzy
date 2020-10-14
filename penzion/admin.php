@@ -82,6 +82,12 @@ else {
         echo "<h2>Editace Stránky: {$vybranaStranka->getId()} </h2>";
         ?>
         <form method="POST">
+            Id: <input type="text" name="id" value="<?php echo htmlspecialchars($vybranaStranka->getId()) ?>">
+            <br>
+            Titulek: <input type="text" name="titulek" value="<?php echo htmlspecialchars($vybranaStranka->getTitulek()) ?>">
+            <br>
+            Menu: <input type="text" name="menu" value="<?php echo htmlspecialchars($vybranaStranka->getMenu()) ?>">
+            <br>
             <textarea name="obsah"><?php echo htmlspecialchars($vybranaStranka->getObsah()) ?></textarea>
             <button name="ulozit">Uložit</button>
         </form>
