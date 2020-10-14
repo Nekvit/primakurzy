@@ -1,5 +1,8 @@
 <?php
 
+use Thunder\Shortcode\Shortcode\Shortcode;
+
+require "lib/shortcode-init.php";
 require "seznamstranek.php";
 
 if (array_key_exists("stranka", $_GET)) {
@@ -68,8 +71,8 @@ if (!array_key_exists($aktivniStranka, $seznamStranek)) {
 
     <section>
     <?php
-    echo $seznamStranek[$aktivniStranka]->getObsah();
-    //echo file_get_contents("$aktivniStranka.html");
+    $obsah = $seznamStranek[$aktivniStranka]->getObsah();
+    echo ShortcodeProcessor::process($obsah);
     ?>
     </section>
 
