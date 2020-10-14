@@ -28,21 +28,49 @@ if (array_key_exists("stranka", $_GET)) {
     $vybranaStranka = $seznamStranek[$idStranky];
 }
 
+//zpracovani pridani
+if (array_key_exists("pridat", $_GET)) {
+    $vybranaStranka = new Stranka("", "", "");
+}
+
 //zpracovani ulozeni
 if (array_key_exists("ulozit", $_POST)) {
     $obsah = $_POST["obsah"];
+
+    $puvodniId = $vybranaStranka->getId();
+    //aktualizace udaju z formulare
+    $vybranaStranka->setID($_POST["id"]);
+    $vybranaStranka->setTitulek($_POST["titulek"]);
+    $vybranaStranka->setMenu($_POST["menu"]);
+
+    $vybranaStranka->ulozit($puvodniId);
+
     $vybranaStranka->ulozObsah($obsah);
+
+    header("Location: ?stranka={$vybranaStranka->getId()}");
+}
+
+//zpracovani mazani
+if (array_key_exists("smazat", $_GET)) {
+    $coSmazat = $_GET["smazat"];
+
+    //$seznamStranek[$coSmazat]->smazSe();
+    //mazani pomoci staticke funkce
+    Stranka::smazatStranku($coSmazat);
+    header("Location: ?");
+
+
+
 }
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/all.min.css">
     <title>Document</title>
 </head>
 <body>
@@ -72,11 +100,15 @@ else {
     </form>
     
 <?php
-    echo "<ul>";
+    echo "<ul  class='list'>";
     foreach ($seznamStranek as $stranka => $udaje) {
-        echo "<li><a href='?stranka=$stranka'>$stranka</a></li>";
+        echo "<li>
+        <a href='?stranka=$stranka' class='nazevStrankyKEditaci'>$stranka</a>
+        <a onclick='return confirm(\"Opravdu smazat stránku $stranka\")' href='?smazat=$stranka' class='fas fa-times-circle'></a>
+        </li>";
     }
     echo "</ul>";
+    echo "<a href='?pridat' class='fas fa-plus-circle'>Přidat</a>";
 
     if ($vybranaStranka != null) {
         echo "<h2>Editace Stránky: {$vybranaStranka->getId()} </h2>";

@@ -29,7 +29,42 @@ class Stranka {
         return $this->menu;
     }
 
+    function setId($hodnota) {
+        $this->id = $hodnota;
+    }
+    function setTitulek($hodnota) {
+        $this->titulek = $hodnota;
+    }
+    function setMenu($hodnota) {
+        $this->menu = $hodnota;
+    }
+
+    function ulozit($oldId) {
+        global $db;
+        
+        // pokud ukladame stranku co uz existuje, tak provadime
+		// v databazi update. pokud jde o novou stranku tak
+		// volame insert
+        if ($oldId != "") {
+            
+            $dotaz = $db->prepare("UPDATE stranka SET id = ?, titulek = ?, menu = ? WHERE id = ?");
+            $dotaz->execute(array($this->id, $this->titulek, $this->menu, $oldId));
+        }
+        else {
+
+            //zjistime z db kolik je max pocet aby pridana stranka byla na konci
+            $dotaz = $db->prepare("SELECT max(poradi) as maximum FROM stranka");
+            $dotaz->execute();
+            $poradi = $dotaz->fetch()["maximum"] + 1; 
+
+            $dotaz = $db->prepare("INSERT INTO stranka SET id = ?, titulek = ?, menu = ?, obsah = '', poradi = ?");
+            $dotaz->execute(array($this->id, $this->titulek, $this->menu, $poradi));
+        }
+    }
+
     function getObsah() {
+
+        if ($this->id != "") {
         //Potřebujeme říci, že máme používat globalní proměnnou $db
         //funkce defaultně používají pouze lokální proměnné uvnitř funkce
         global $db;
@@ -41,6 +76,10 @@ class Stranka {
         $vysledek = $dotaz->fetch();
 
         return $vysledek["obsah"];
+        }
+        else {
+            return "";
+        }
     }
 
     function ulozObsah($obsah) {
@@ -53,11 +92,30 @@ class Stranka {
         $dotaz->execute(array($obsah, $this->id));
         
     }
+
+    function smazSe(){
+        global $db;
+
+        $dotaz = $db->prepare("DELETE FROM stranka WHERE id = ?");
+        $dotaz->execute(array($this->id));
+
+        //abychom neduplikovali kod muzeme ^toto smazat
+        //a zavolat statickou funkci ktera dela to same
+        //Stranka::smazatStranku($this->id);
+    }
+
+    //nepatří žádné instanci a volá se přes :: místo ->
+    static function smazatStranku($idStranky) {
+        global $db;
+
+        $dotaz = $db->prepare("DELETE FROM stranka WHERE id = ?");
+        $dotaz->execute(array($idStranky));
+    }
 }
 
 $seznamStranek = array();
 
-$dotaz = $db->prepare("SELECT * FROM stranka");
+$dotaz = $db->prepare("SELECT * FROM stranka ORDER BY poradi");
 $dotaz->execute();
 
 $vysledek = $dotaz->fetchAll();

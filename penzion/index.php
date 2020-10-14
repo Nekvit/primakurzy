@@ -6,7 +6,7 @@ if (array_key_exists("stranka", $_GET)) {
     $aktivniStranka = $_GET["stranka"];
 }
 else {
-    $aktivniStranka = "domu";
+    $aktivniStranka = array_key_first($seznamStranek);
 }
 
 // potrebujeme zkontrolovat zdali vybrana stranka
