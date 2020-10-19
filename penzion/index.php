@@ -125,5 +125,10 @@ if (!array_key_exists($aktivniStranka, $seznamStranek)) {
         $("html, body").animate({ scrollTop: 0 }, 1000, "easeInOutQuart");
     })
 </script>
+
+<?php
+require "lib/photoswipe-init.php";
+
+?>
 </body>
 </html>
