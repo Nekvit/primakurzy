@@ -111,6 +111,16 @@ class Stranka {
         $dotaz = $db->prepare("DELETE FROM stranka WHERE id = ?");
         $dotaz->execute(array($idStranky));
     }
+
+    static function novePoradi($novePoradi) {
+        global $db;
+
+        foreach ($novePoradi as $poradi => $idStranky) {
+            $dotaz = $db->prepare("UPDATE stranka SET poradi = ? WHERE id = ?");
+            $dotaz->execute(array($poradi, $idStranky));
+        }
+
+    }
 }
 
 $seznamStranek = array();

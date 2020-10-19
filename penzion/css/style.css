@@ -60,6 +60,37 @@ header .container {
     height: 530px;
     background-size: cover;
 }
+.headerImg.menu {
+    background: url("../upload/source/primapenzion-main.jpg") center center no-repeat;
+}
+.headerImg.galerie {
+    background: url("../upload/source/primapenzion-pool-min.jpg") center center no-repeat;
+}
+.headerImg.kontakt {
+    background: url("../upload/source/primapenzion-room.jpg") center center no-repeat;
+}
+.headerImg.rezervace {
+    background: url("../upload/source/primapenzion-room2.jpg") center center no-repeat;
+}
+
+#scrollTop {
+    font-size: 32px;
+    position: fixed;
+    text-align: center;
+    right: 50px;
+    bottom: 60px;
+    padding: 15px 5px;
+    border: 1px solid rgb(182, 181, 181);
+    border-radius: 20px;
+    background-color: rgb(238, 238, 238);
+    opacity: 0.7;
+}
+
+#scrollTop:hover {
+    background-color: rgba(186, 221, 178, 0.445);
+    cursor: pointer;
+    opacity: 1;
+}
 
 /*FOOTER*/
 

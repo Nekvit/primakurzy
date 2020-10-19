@@ -59,7 +59,17 @@ if (array_key_exists("smazat", $_GET)) {
     Stranka::smazatStranku($coSmazat);
     header("Location: ?");
 
+}
 
+//zpracovani poradi stranek
+if (array_key_exists("novePoradi", $_POST)) {
+    $poradi = $_POST["novePoradi"];
+    Stranka::novePoradi($poradi);
+
+    var_dump($poradi);
+
+    echo "OK"; // posleme JS ze to probehlo OK
+    exit; //ukoncime generovani stranky abychom v JS neodeslali i HTML kod adminu.
 
 }
 
@@ -69,17 +79,22 @@ if (array_key_exists("smazat", $_GET)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css?<?php echo filemtime("css/admin.css") ?>">
+    <link rel="stylesheet" href="css/all.min.css?<?php echo filemtime("css/all.min.css") ?>">
     <title>Document</title>
+    <script src="lib/tinymce/js/tinymce/tinymce.min.js?<?php echo filemtime("lib/tinymce/js/tinymce/tinymce.min.js") ?>" referrerpolicy="origin"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js?"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?"></script>
+    <script src="js/admin-tinymce.js?<?php echo filemtime("js/admin-tinymce.js") ?>"></script>
+    <script src="js/admin.js?<?php echo filemtime("js/admin.js") ?>"></script>
 </head>
 <body>
-
+    
 <?php
 if (!array_key_exists("prihlasen", $_SESSION)) {
 ?>   
 
-    <form method="post">
+<form method="post">
         Login<input type="text" name="loginName">
         <br>
         Heslo<input type="password" name="password">
@@ -100,10 +115,11 @@ else {
     </form>
     
 <?php
-    echo "<ul  class='list'>";
+    echo "<ul  class='list' id='listStranek'>";
     foreach ($seznamStranek as $stranka => $udaje) {
-        echo "<li>
+        echo "<li id='$stranka'>
         <a href='?stranka=$stranka' class='nazevStrankyKEditaci'>$stranka</a>
+        <a href='$stranka' target='_blank' class='far fa-eye' ></a>
         <a onclick='return confirm(\"Opravdu smazat stránku $stranka\")' href='?smazat=$stranka' class='fas fa-times-circle'></a>
         </li>";
     }
@@ -129,9 +145,6 @@ else {
 }
 ?>
 
-<script src="lib/tinymce/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="js/admin-tinymce.js"></script>
 
-</script>
 </body>
 </html>

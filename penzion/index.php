@@ -27,10 +27,12 @@ if (!array_key_exists($aktivniStranka, $seznamStranek)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $seznamStranek[$aktivniStranka]->getTitulek(); ?></title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/content.css">
-    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css?<?php echo filemtime("css/style.css") ?>">
+    <link rel="stylesheet" href="css/content.css?<?php echo filemtime("css/content.css") ?>">
+    <link rel="stylesheet" href="css/all.min.css?<?php echo filemtime("css/all.min.css") ?>">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js?"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?"></script>
     
 </head>
 <body>
@@ -65,7 +67,7 @@ if (!array_key_exists($aktivniStranka, $seznamStranek)) {
             </div>
 
         </div>
-        <div class="headerImg"></div>
+        <div class="headerImg <?php echo $aktivniStranka ?>"></div>
         
     </header>
 
@@ -117,6 +119,11 @@ if (!array_key_exists($aktivniStranka, $seznamStranek)) {
 
         </div>
     </footer>
-    
+    <span id="scrollTop" class="fas fa-chevron-up"></span>
+<script>
+    $("#scrollTop").on("click", () => {
+        $("html, body").animate({ scrollTop: 0 }, 1000, "easeInOutQuart");
+    })
+</script>
 </body>
 </html>

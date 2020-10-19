@@ -26,5 +26,5 @@ tinymce.init({
 	verify_html: false,
 	entity_encoding: "raw",
 	external_filemanager_path:"lib/filemanager/",
-	external_plugins: { "filemanager" : "/plugins/responsivefilemanager/plugin.min.js"}
+	external_plugins: { "filemanager" : "plugins/responsivefilemanager/plugin.min.js"}
 });
