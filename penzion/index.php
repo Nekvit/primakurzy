@@ -31,6 +31,7 @@ if (!array_key_exists($aktivniStranka, $seznamStranek)) {
     <link rel="stylesheet" href="css/content.css?<?php echo filemtime("css/content.css") ?>">
     <link rel="stylesheet" href="css/all.min.css?<?php echo filemtime("css/all.min.css") ?>">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js?"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?"></script>
     
@@ -121,6 +122,7 @@ if (!array_key_exists($aktivniStranka, $seznamStranek)) {
     </footer>
     <span id="scrollTop" class="fas fa-chevron-up"></span>
 <script>
+   
     $("#scrollTop").on("click", () => {
         $("html, body").animate({ scrollTop: 0 }, 1000, "easeInOutQuart");
     })

@@ -104,6 +104,12 @@ header .container {
     text-align: left;
 }
 
+.chyba {
+    color: red;
+    font-style: italic;
+    font-weight: 600;
+}
+
 .uspech {
     color: rgba(72, 202, 60, 0.644);
     font-weight: bold;
