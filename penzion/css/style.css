@@ -92,6 +92,23 @@ header .container {
     opacity: 1;
 }
 
+.chyby {
+
+    display: inline-block;
+    color: red;
+    margin: 8px auto;
+}
+
+.chyby li{
+    padding: 3px 0;
+    text-align: left;
+}
+
+.uspech {
+    color: rgba(72, 202, 60, 0.644);
+    font-weight: bold;
+}
+
 /*FOOTER*/
 
 .paticka {

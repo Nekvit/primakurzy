@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use Thunder\Shortcode\Shortcode\Shortcode;
 
 require "lib/shortcode-init.php";
